@@ -1,0 +1,39 @@
+Subject: [PATCH] Exit correctly when invoked without arguments
+https://sourceforge.net/p/mcj/fig2dev/ci/11fba42e388ff7d92f81518406429bdea0a6a3b3
+
+---
+ fig2dev/fig2dev.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/fig2dev/fig2dev.c b/fig2dev/fig2dev.c
+index 62ec099..949671e 100644
+--- a/fig2dev/fig2dev.c
++++ b/fig2dev/fig2dev.c
+@@ -161,9 +161,9 @@ static struct depth_opts {
+ 
+ static char	Usage[] =
+ #ifdef I18N
+-"Usage:\n %s -hV\n %s -L language [-s size] [-m scale] [-j] [input [output]]\n";
++"Usage:\n %1$s -hV\n %1$s -L language [-s size] [-m scale] [-j] [input [output]]\n";
+ #else
+-    "Usage:\n %s -hV\n %s -L language [-s size] [-m scale] [input [output]]\n";
++    "Usage:\n %1$s -hV\n %1$s -L language [-s size] [-m scale] [input [output]]\n";
+ #endif
+ 
+ static int	 parse_gridspec(char *string, float *numer, float *denom,
+@@ -218,8 +218,10 @@ get_args(int argc, char *argv[])
+ 	char	*grid, *p;
+ 	float	 numer, denom;
+ 
+-	if (argc == 1)
+-	    fprintf(stderr, Usage, prog, prog);
++	if (argc == 1) {
++		fprintf(stderr, Usage, prog);
++		exit(EXIT_SUCCESS);
++	}
+ 
+ 	/* print the version, for the comfort of the autotest tests */
+ 	if (!strcmp(argv[1], "--version")) {
+-- 
+2.31.1
+
