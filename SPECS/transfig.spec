@@ -1,6 +1,6 @@
 Name:		transfig
 Version:	3.2.7b
-Release:	10%{?dist}
+Release:	11%{?dist}
 Epoch:		1
 Summary:	Utility for converting FIG files (made by xfig) to other formats
 License:	MIT
@@ -25,6 +25,7 @@ Patch15:  0015-CVE-2020-21532.patch
 Patch16:  0016-CVE-2020-21531.patch
 Patch17:  0017-CVE-2021-32280.patch
 Patch18:  0018-exit-no-args.patch
+Patch19:  0019-CVE-2025-46397.patch
 
 Requires:	ghostscript
 Requires:	bc
@@ -77,6 +78,10 @@ mv fig2dev.1.in.new man/fig2dev.1.in
 
 
 %changelog
+* Wed Dec 03 2025 Marian Koncek <mkoncek@redhat.com> - 1:3.2.7b-11
+- Detect nan in spline control values
+- CVE-2025-46397
+
 * Mon Oct 18 2021 Ondrej Dubaj <odubaj@redhat.com> - 1:3.2.7b-10
 - Exit correctly when invoked without arguments (#2015001)
 
