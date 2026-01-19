@@ -1,12 +1,13 @@
 Name:		transfig
 Version:	3.2.6a
-Release:	4%{?dist}
+Release:	5%{?dist}
 Epoch:		1
 Summary:	Utility for converting FIG files (made by xfig) to other formats
 License:	MIT
 URL:		https://sourceforge.net/projects/mcj/
 Source0:	http://downloads.sourceforge.net/mcj/fig2dev-%{version}.tar.xz
 Patch1:         fig2dev-3.2.6a-CVE-2017-16899.patch
+Patch2:         0001-CVE-2025-46397.patch
 
 Requires:	ghostscript
 Requires:	bc
@@ -48,6 +49,10 @@ make %{?_smp_mflags}
 %{_mandir}/man1/*.1.gz
 
 %changelog
+* Wed Dec 03 2025 Marian Koncek <mkoncek@redhat.com> - 1:3.2.6a-5
+- Detect nan in spline control values
+- Fix for CVE-2025-46397
+
 * Mon Jul 16 2018 Honza Horak <hhorak@redhat.com> - 1:3.2.6a-4
 - Remove license GPLv3+
 
